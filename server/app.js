@@ -31,7 +31,7 @@ $(`#bt2`).append(
     `<div>
         <input type="button" id="sortName" value="Sort Countries name">
         <input type="button" id="sortHeight" value="Sort Countries height">
-        <input type="button" id="search" value="Country with height (160,170) name start with B or C">
+        <input type="button" id="search" value="Country with height [160;170] and name start with B or C">
         <input type="button" id="total" value="Total height 2c">
         <div  class='scroll' id="result" style="width: 100%; height: 300px; overflow:auto; border: 2px">
         </div>
@@ -39,39 +39,34 @@ $(`#bt2`).append(
 );
 
 let country = new Country();
-const heights = [160, 170];
 const letter = ['B', 'C'];
 $(`#sortName`).click(() => {
     $(`#result`).text('');
-    country.sortName().then(countries => {
-        countries.map(displayCountry => {
-            $(`#result`).append(`<div>${JSON.stringify(displayCountry)}</div>`);
-        })
-    });
+    let countries = country.sortName();
+    countries.map(displayCountry => {
+        $(`#result`).append(`<div>${JSON.stringify(displayCountry)}</div>`);
+    })
 });
 
 $(`#sortHeight`).click(() => {
     $(`#result`).text('');
-    country.sortHeight().then(countries => {
-        countries.map(displayCountry => {
-            $(`#result`).append(`<div>${JSON.stringify(displayCountry)}</div>`);
-        })
+    let countries = country.sortHeight();
+    countries.map(displayCountry => {
+        $(`#result`).append(`<div>${JSON.stringify(displayCountry)}</div>`);
     });
 });
 
 $(`#search`).click(() => {
     $(`#result`).text('');
-    country.searchCountry(heights, letter).then(countries => {
-        countries.map(displayCountry => {
-            $(`#result`).append(`<div>${JSON.stringify(displayCountry)}</div>`);
-        })
-    });
+    let countries = country.searchCountry(letter);
+    countries.map(displayCountry => {
+        $(`#result`).append(`<div>${JSON.stringify(displayCountry)}</div>`);
+    })
 });
 
 $(`#total`).click(() => {
-    country.searchCountry(heights, letter).then(countries => {
-        $(`#result`).append(`<div>Total Height : ${country.totalHeight(countries)}</div>`);
-    });
+    let countries = country.searchCountry(letter);
+    $(`#result`).append(`<div>Total Height : ${country.totalHeight(countries)}</div>`);
 });
 
 
@@ -85,7 +80,7 @@ $('#bt3').append(`<div>
         <input type="button" value="Get number" id="getNumber">
         <span><b>Result:</b> <span id="dayResult"></span></span>
     <div>
-    <i>Template: thu 2, thu 5, thu 4, thu 3, thu 6, thu 7</i></div>`)
+    <i>Template: thu 2, thu 5, thu 4, thu 3, thu 6, thu 7</i></div>`);
 
 const day = new Day();
 $(`#getNumber`).click(() => {

@@ -25,12 +25,21 @@ module.exports = {
                         loader: "css-loader",
                     }
                 ]
+            },
+            {
+                test: /\.json$/,
+                use: [
+                    {
+                        loader: "json-loader",
+                    }
+                ]
             }
         ],
         loaders: [
-            {test: /\.hbs$/, loader: "handlebars-loader"},
+            {test: /\.hbs$/, loader: 'handlebars-loader'},
             {test: /\.less$/, loaders: ['style-loader', 'css-loader', 'less-loader']},
             {test: /\.css$/, loaders: ['style-loader', 'css-loader']},
+            {test: /\.json$/, loader: 'json-loader'}
         ]
     },
     plugins: [
